@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Nondweni</title>
+<style>
+  /* Base Styles */
+  body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    line-height:1.6;
+    background:#e8f5e9;
+    color:#333;
+    transition:0.3s;
+  }
+  header {
+    background:#2e7d32;
+    color:white;
+    text-align:center;
+    padding:2rem 1rem;
+    position:relative;
+  }
+  nav {
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    background:#1b5e20;
+  }
+  nav a {
+    color:white;
+    margin:0.5rem 1rem;
+    font-weight:bold;
+    padding:0.5rem 1rem;
+    text-decoration:none;
+    border-radius:5px;
+    transition:0.3s;
+  }
+  nav a:hover { background:#4caf50; }
+  section {
+    padding:3rem 2rem;
+    border-bottom:2px solid #2e7d32;
+    transition:0.3s;
+  }
+  h2 { color:#2e7d32; margin-bottom:1rem;}
+  h3 { color:#1b5e20; margin-bottom:0.5rem;}
+  .subsection { margin-left:1rem; margin-bottom:1rem;}
+  .map, .weather, .gallery, .distance, .climate, .transport {
+    border:2px solid #2e7d32;
+    padding:1rem;
+    margin:1rem 0;
+    border-radius:8px;
+    background:white;
+    transition:0.3s;
+  }
+  .gallery img { width:100%; max-width:300px; margin:0.5rem; border-radius:5px;}
+  .flex-container { display:flex; flex-wrap:wrap; gap:1rem; }
+  footer { background:#1b5e20; color:white; text-align:center; padding:1.5rem;}
+  iframe { width:100%; height:400px; border:none; border-radius:8px; }
+
+  /* Header buttons */
+  .header-btn {
+    position:absolute; top:10px; right:10px; margin-left:10px;
+    cursor:pointer; background:#4caf50; color:white; border:none; padding:0.5rem 1rem; border-radius:5px;
+  }
+  .header-btn:hover { background:#388e3c; }
+
+  /* Dark Mode */
+  body.dark {
+    background:#121212; color:#e0e0e0;
+  }
+  body.dark section { border-color:#4caf50; }
+  body.dark .map, body.dark .weather, body.dark .gallery, body.dark .distance, body.dark .climate, body.dark .transport {
+    background:#1e1e1e; border-color:#4caf50; color:#e0e0e0;
+  }
+  body.dark header, body.dark nav, body.dark footer { background:#1b5e20; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <h1 data-en="Discover Nondweni" data-zu="Thola iNondweni">Discover Nondweni</h1>
+  <p data-en="Green grasslands, rich history, community life" data-zu="Izimfunda eziluhlaza, umlando ocebile, impilo yomphakathi">Green grasslands, rich history, community life</p>
+  <button class="header-btn" id="langToggle">Zulu</button>
+  <button class="header-btn" id="darkToggle" style="right:120px;">Dark Mode</button>
+</header>
+
+
+<!-- Section: About -->
+<section id="about">
+  <!-- Title -->
+  <h2 data-en="About Nondweni" data-zu="Mayelana neNondweni">About Nondweni</h2>
+
+  <!-- Definition of Nondweni -->
+  <p data-en="The name 'Nondweni' refers both to the settlement in KwaZulu-Natal and the ancient Nondweni Greenstone Complex, a highly deformed and metamorphosed geological formation of great tectonic importance." 
+     data-zu="Igama elithi 'Nondweni' libhekisela kokubili idolobha eliseKwaZulu-Natal kanye neNondweni Greenstone Complex, okuyindawo yamatshe yakudala ephinde yashintshwa kakhulu, ebaluleke kakhulu kwezokwakheka komhlaba.">
+    <strong></strong> The name 'Nondweni' refers both to the settlement in KwaZulu-Natal and the ancient Nondweni Greenstone Complex, a highly deformed and metamorphosed geological formation of great tectonic importance.
+  </p>
+
+  <!-- Settlement Formation -->
+  <p data-en="Nondweni, the settlement, is part of the Nqutu Local Municipality in the uMzinyathi District. Historically, it was used to house families evicted from 'Black Spots' and white-owned farms during the apartheid era. In 1976, a 'closer settlement' informally called 'Tin Town' was established, providing plots of land and temporary prefabricated huts to the residents." 
+     data-zu="INondweni, idolobha, liyingxenye yeNqutu Local Municipality eMzinyathi District. Ngokwezimboni zomlando, yasebenzisa ukuhlalisa imindeni ehanjiswe 'eBlack Spots' kanye namafamu aphethwe ngamaWhite ngesikhathi sobandlululo. Ngo-1976, kwakhiwa indawo yokuhlala ebizwa ngokungaqondile ngokuthi 'Tin Town', inikezela ngamapulazi nezindlu ezakhiwe ngaphambilini kubahlali.">
+    Nondweni, the settlement, is part of the Nqutu Local Municipality in the uMzinyathi District. Historically, it was used to house families evicted from 'Black Spots' and white-owned farms during the apartheid era. In 1976, a 'closer settlement' informally called 'Tin Town' was established, providing plots of land and temporary prefabricated huts to the residents.
+  </p>
+
+  <!-- Animated Photo Slideshow -->
+  <div class="slideshow-container" style="position:relative; max-width:90%; margin:auto; margin-top:2rem; border-radius:10px; overflow:hidden; box-shadow:0 0 15px rgba(0,0,0,0.3);">
+    <img class="slides" src="nond.jpeg" style="width:100%; display:block; border-radius:10px;">
+    <img class="slides" src="nond1.jpeg" style="width:100%; display:none; border-radius:10px;">
+    <img class="slides" src="nond2.jpeg" style="width:100%; display:none; border-radius:10px;">
+    <p style="position:absolute; bottom:5px; left:10px; color:white; background:rgba(0,0,0,0.5); padding:5px 10px; border-radius:5px;" 
+       data-en="Sihle Nkosi" 
+       data-zu="Sihle Nkosi">sihle nkosi</p>
+  </div>
+
+  <!-- Community & Interesting Info -->
+  <p style="margin-top:2rem;" data-en="Despite being divided into different sections, the people of Nondweni maintain a strong sense of unity. They participate in sports, festivals, and community projects. Nondweni continues to grow, and residents creatively overcome challenges like limited services and employment." 
+     data-zu="Noma behlukaniswe ngezigaba ezihlukene, abantu baseNondweni bagcina umoya wobumbano oqinile. Bahlanganyela emidlalweni, emikhosini, nasezinhlelweni zomphakathi. INondweni iyaqhubeka nokukhula, futhi abahlali bayayinqoba ngokuhlakanipha imisebenzi emincane nezinsizakalo ezilinganiselwe.">
+    Despite being divided into different sections, the people of Nondweni maintain a strong sense of unity. They participate in sports, festivals, and community projects. Nondweni continues to grow, and residents creatively overcome challenges like limited services and employment.
+  </p>
+
+  <!-- Fun Facts Strip -->
+  <div class="facts" style="background:#f1f8e9; padding:1rem; border-left:4px solid #2e7d32; margin:2rem 0; border-radius:5px;">
+    <h3 data-en="Interesting Facts" data-zu="Amaqiniso Ajabulisayo">Interesting Facts</h3>
+    <ul>
+      <li data-en="Population around 4,500 in 1979, growing steadily" data-zu="Inani labantu cishe 4,500 ngo-1979, liyaqhubeka nokukhula">Population around 4,500 in 1979, growing steadily</li>
+      <li data-en="Plots allocated at 21 x 35m, nominal rent" data-zu="Amapulazi anikezwe ngo-21 x 35m, irenti encane">Plots allocated at 21 x 35m, nominal rent</li>
+      <li data-en="Schools, clinic, and shops gradually added" data-zu="Izikole, ikhlinikhi, nezitolo zengezwe kancane kancane">Schools, clinic, and shops gradually added</li>
+      <li data-en="Under Chief Hlatshwayo" data-zu="Ngaphansi kukaNdunankulu Hlatshwayo">Under Chief Hlatshwayo</li>
+      <li data-en="Nondweni is divided into sections A–G, Section 5 and Mahlungulu" data-zu="INindweni ihlukaniswe ngezigaba A–G, yise-5 kanye nase Mahlungulu">Nondweni is divided into sections A–G, section 5 and Mahlungulu</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Slideshow JS -->
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let slides = document.getElementsByClassName("slides");
+  for (let i=0; i<slides.length; i++) { slides[i].style.display = "none"; }
+  slideIndex++;
+  if(slideIndex > slides.length) { slideIndex = 1; }
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 4000); // Change image every 4 seconds
+}
+</script>
+
+<!-- CSS Animation -->
+<style>
+.slideshow-container img { animation:fadeIn 1s ease-in-out; }
+@keyframes fadeIn {
+  0% {opacity:0; transform:translateY(20px);}
+  100% {opacity:1; transform:translateY(0);}
+}
+</style>
+
+<!-- Section: Lifestyle -->
+<section id="lifestyle">
+  <h2 data-en="Lifestyle" data-zu="Isitayela Sokuphila">Lifestyle</h2>
+
+  <!-- Community intro -->
+  <p data-en="Life in Nondweni is vibrant and deeply community-oriented. People gather for sports, local markets, traditional festivals, and different social events that strengthen unity and cultural pride." 
+     data-zu="Impilo eNondweni inothile futhi ibumbene. Abantu bayahlangana ezemidlalweni, ezimakethe zomphakathi, emikhosini yendabuko nasezinhlelweni zokuxhumana ezihlukahlukene ezikhuthaza ubunye kanye nokuqhenya ngamasiko abo.">
+     Life in Nondweni is vibrant and deeply community-oriented. People gather for sports, local markets, traditional festivals, and different social events that strengthen unity and cultural pride.
+  </p>
+
+  <!-- Animated community slideshow -->
+  <div class="slideshow" id="community-slideshow">
+    <img src="mpera.jpeg" alt="Nondweni Community" class="active">
+    <img src="sec21.jpeg" alt="Local Market">
+    <img src="phakathi.jpeg" alt="Festival">
+   
+  </div>
+
+  <!-- Football info -->
+  <p data-en="Nondweni is especially known for its passion for football. The area has several football grounds, including the well-recognized Nondweni Stadium. Throughout the year, many tournaments are hosted, but the biggest excitement comes during school holidays and especially in December. These tournaments not only bring the community together but also attract football clubs from surrounding regions. It is a tradition that shows the unity, energy, and love for sport within Nondweni." 
+     data-zu="INondweni yaziwa kakhulu ngokuthanda kwayo ibhola. Le ndawo inezinkundla eziningi zebhola kuhlanganisa iNondweni Stadium, eyaziwayo. Unyaka wonke kuhlale kunemidlalo ebanjwayo, kodwa iningi lomdlandla libonakala ngezinsuku zamaholide kanye kakhulu ngoDisemba. Le miqhudelwano ayigcini ngokuletha umphakathi ndawonye kodwa futhi iletha amaqembu ebhola avela kwezinye izifunda ezizungezile. Lokhu sekuyisiko elikhombisa ubunye, amandla, kanye nothando lwezemidlalo emphakathini wakwaNondweni.">
+     Nondweni is especially known for its passion for football. The area has several football grounds, including the well-recognized Nondweni Stadium.
+Throughout the year, many tournaments are hosted, but the biggest excitement comes during school holidays and especially in December.
+These tournaments not only bring the community together but also attract football clubs from surrounding regions. It is a tradition that shows the unity, energy, and love for sport within Nondweni.
+  </p>
+
+  <!-- Football clubs animation -->
+  <div class="clubs-slideshow" id="clubs-slideshow">
+    <span data-en="Ocean Blues FC" data-zu="Ocean Blues FC" class="active">Ocean Blues FC</span>
+    <span data-en="Tigers FC" data-zu="Tigers FC">Tigers FC</span>
+    <span data-en="NJ Pirates FC" data-zu="NJ Pirates FC">NJ Pirates FC</span>
+    <span data-en="One Finger Maseru FC" data-zu="One Finger Maseru FC">One Finger Maseru FC</span>
+    <span data-en="Manchester" data-zu="Manchester">Manchester</span>
+  </div>
+
+  <!-- Volleyball slideshow -->
+  <div class="slideshow small" id="volley-slideshow">
+    <img src="netball.jpeg" alt="Volleyball Team" class="active">
+    <img src="sec42.jpeg" alt="Volleyball Action">
+    
+  </div>
+  <p data-en="Besides football, Nondweni also has a strong tradition in volleyball. The local volleyball team proudly represents the community and has proven its strength by competing across many districts in KwaZulu-Natal." 
+     data-zu="Ngaphezu kwebhola, iNondweni iphinde ibe nesiko eliqinile le-volleyball. Ithimba lethu le-volleyball limele umphakathi ngokuzigqaja futhi selibonise amandla alo ngokuncintisana kuzo izifunda eziningi zaseKwaZulu-Natal.">
+     Besides football, Nondweni also has a strong tradition in volleyball. The local volleyball team proudly represents the community and has proven its strength by competing across many districts in KwaZulu-Natal.
+  </p>
+
+  <!-- Netball -->
+  <p data-en="Netball is another popular sport in Nondweni, with several local teams participating in community leagues and tournaments. These teams play an important role in encouraging young women to take part in sports and teamwork." 
+     data-zu="INetball nayo idume kakhulu eNondweni, futhi kunezinkundla eziningi lapho amaqembu asekhaya encintisana khona emiqhudelwaneni yomphakathi. Lawa maqembu adlala indima ebalulekile ekukhuthazeni amantombazane ukuba abambe iqhaza kwezemidlalo kanye nasemsebenzini wokubambisana.">
+     Netball is another popular sport in Nondweni, with several local teams participating in community leagues and tournaments. These teams play an important role in encouraging young women to take part in sports and teamwork.
+  </p>
+
+  <!-- Youth slideshow -->
+  <div class="slideshow small" id="youth-slideshow">
+    <img src="chess.jpeg" alt="Youth in Sports" class="active">
+    <img src="sec42.jpeg" alt="Youth Playing">
+    <img src="se41.jpeg" alt="Team Spirit">
+  </div>
+  <p data-en="The availability of good playing facilities is one of the biggest strengths of Nondweni. These facilities give young people a safe and constructive environment, helping them to focus on positive goals and keeping them away from destructive habits. Sports continue to shape the future of the youth in Nondweni." 
+     data-zu="Ukuba nezinkundla ezinhle nezanele zokudlala kungenye yamandla amakhulu aseNondweni. Lezi zinkundla zinikeza intsha indawo ephephile nenenzuzo, ezibasiza ukuthi bagxile ezinhlelweni ezinhle futhi bahlale bekude nemikhuba eyonakalisayo. Ezokudlala ziqhubeka nokubumba ikusasa lentsha yaseNondweni.">
+    The availability of good playing facilities is one of the biggest strengths of Nondweni. These facilities give young people a safe and constructive environment, helping them to focus on positive goals and keeping them away from destructive habits. Sports continue to shape the future of the youth in Nondweni.
+  </p>
+
+  <!-- Enjoyment slideshow -->
+  <div class="slideshow small" id="enjoy-slideshow">
+    <img src="sec51.jpeg" alt="Enjoyment Places" class="active">
+    <img src="sec52.jpeg" alt="Fast Foods">
+    <img src="sec53.jpeg" alt="Social Spot">
+  </div>
+  <p data-en="Beyond sports, Nondweni offers a number of places for enjoyment and relaxation. Residents and visitors can enjoy tasty fast foods, refresh with cool drinks, and spend quality time socializing. These spots provide the community with spaces to unwind and celebrate life." 
+     data-zu="Ngaphezu kwezemidlalo, iNondweni inezindawo eziningi zokuzijabulisa nokuphumula. Abahlali nezivakashi bangajabulela ukudla okusheshayo okunambithekayo, baphuze iziphuzo ezipholile, futhi bachithe isikhathi esihle sokuxhumana. Lezi zindawo zinikeza umphakathi izikhala zokuphumula nokugubha impilo.">
+     Beyond sports, Nondweni offers a number of places for enjoyment and relaxation. Residents and visitors can enjoy tasty fast foods, refresh with cool drinks, and spend quality time socializing. These spots provide the community with spaces to unwind and celebrate life.
+  </p>
+</section>
+
+<style>
+/* General slideshow styling */
+.slideshow, .slideshow.small {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 350px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+.slideshow.small { height: 250px; }
+.slideshow img, .slideshow.small img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.slideshow img.active, .slideshow.small img.active {
+  opacity: 1;
+}
+
+/* Football clubs animation */
+.clubs-slideshow {
+  margin: 20px auto;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 40px;
+  overflow: hidden;
+}
+.clubs-slideshow span {
+  display: none;
+  animation: fadeText 1.5s ease-in-out;
+}
+.clubs-slideshow span.active {
+  display: inline-block;
+}
+@keyframes fadeText {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+
+<script>
+// Reusable slideshow function
+function createSlideshow(selector, interval=4000) {
+  const slides = document.querySelectorAll(selector + ' img');
+  let index = 0;
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, interval);
+}
+
+// Initialize all slideshows
+createSlideshow('#community-slideshow', 4000);
+createSlideshow('#volley-slideshow', 3500);
+createSlideshow('#youth-slideshow', 3700);
+createSlideshow('#enjoy-slideshow', 3600);
+
+// Clubs text animation
+const clubs = document.querySelectorAll('#clubs-slideshow span');
+let clubIndex = 0;
+setInterval(() => {
+  clubs[clubIndex].classList.remove('active');
+  clubIndex = (clubIndex + 1) % clubs.length;
+  clubs[clubIndex].classList.add('active');
+}, 3000);
+</script>
+
+<!-- Section: Local Services -->
+<style>
+.static-img {
+  display: block;
+  max-width: 100%;     /* keeps it inside the screen */
+  width: 400px;        /* preferred width on large screens */
+  height: 250px;       /* fixed height for balance */
+  object-fit: cover;   /* crops neatly without distortion */
+  margin: 20px auto;   /* centers image with spacing */
+  border-radius: 10px; /* optional rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* subtle shadow */
+}
+
+/* Make sure they resize properly on phones */
+@media (max-width: 600px) {
+  .static-img {
+    width: 90%;     /* fill most of screen */
+    height: auto;   /* keep aspect ratio */
+  }
+}
+</style>
+<section id="services">
+  <h2 data-en="Local Services" data-zu="Izinsiza Zendawo"></h2>
+
+  <!-- Police -->
+  <div class="subsection">
+    <h3 data-en="Police Station" data-zu="Isiteshi Samaphoyisa"></h3>
+    <img src="police.jpeg" alt="Nondweni Police Station" class="static-img">
+    <p data-en="Nondweni Police Station provides safety and security for the community. They are always available for assistance and emergencies." 
+       data-zu="Isiteshi Samaphoyisa saseNondweni sinikeza ukuphepha nokuvikeleka emphakathini. Njalo silungele ukusiza uma kunezimo eziphuthumayo.">
+    </p>
+    <p data-en="Phone: 034-2718986 | Fax: 034-2718985 | Email: NONDWENI-SAPS@saps.gov.za | Address: R45, Nondweni, Nqutu, 3137 | Postal: PO Box 5529, Nondweni, Nqutu, 3137 | Coordinates: LAT -28.19908, LONG 30.80476"
+       data-zu="Ucingo: 034-2718986 | Ifeksi: 034-2718985 | I-imeyili: NONDWENI-SAPS@saps.gov.za | Ikheli: R45, Nondweni, Nqutu, 3137 | Ibhokisi leposi: PO Box 5529, Nondweni, Nqutu, 3137 | Izixhumanisi: LAT -28.19908, LONG 30.80476">
+    </p>
+  </div>
+
+  <!-- Clinic -->
+  <div class="subsection">
+    <h3 data-en="Clinic" data-zu="Ikhlinikhi"></h3>
+    <div class="slideshow small">
+      <img src="clinic2.jpeg" alt="Nondweni Clinic" class="active">
+      <img src="clinic1.jpeg" alt="Nondweni Clinic">
+      <img src="clinic.jpeg" alt="Nondweni Clinic">
+    </div>
+    <p data-en="Nondweni Clinic is located on D1318 Rd, Nqutu. It provides healthcare services to the community and surrounding areas." 
+       data-zu="Ikhlinikhi yaseNondweni itholakala ku-D1318 Rd, eNquthu. Inikeza usizo lwezempilo emphakathini nasemazingeni azungezile.">
+    </p>
+    <p data-en="Address: D1318 Rd, Nqutu, 3135, KwaZulu-Natal"
+       data-zu="Ikheli: D1318 Rd, eNquthu, 3135, KwaZulu-Natal">
+    </p>
+  </div>
+
+  <!-- Library -->
+  <div class="subsection">
+    <h3 data-en="Library" data-zu="Umtapo Wezincwadi"></h3>
+    <div class="slideshow small">
+      <img src="libra2.jpeg" alt="Nondweni Library" class="active">
+      <img src="libra1.jpeg" alt="Nondweni Library">
+      <img src="libra.jpeg" alt="Nondweni Library">
+    </div>
+    <p data-en="Nondweni Library is a resourceful place for students and community members, offering books, internet access, and learning programs." 
+       data-zu="Umtapo wezincwadi waseNondweni uyindawo enezinsiza eziningi zabafundi kanye nomphakathi, unikeza izincwadi, ukufinyelela kwi-inthanethi kanye nezinhlelo zokufunda.">
+    </p>
+    <p data-en="Address: Private Bag x5514, Nqutu, South Africa | Phone: 031 109 5621 | Email: nondwenilibrary@gmail.com | Website: nondwenilibrary.blogspot.com"
+       data-zu="Ikheli: Private Bag x5514, eNquthu, eNingizimu Afrika | Ucingo: 031 109 5621 | I-imeyili: nondwenilibrary@gmail.com | Iwebhusayithi: nondwenilibrary.blogspot.com">
+    </p>
+  </div>
+
+  <!-- Municipality -->
+  <div class="subsection">
+    <h3 data-en="Municipality" data-zu="Umasipala"></h3>
+    <img src="munic.jpeg" alt="Nondweni Municipality" class="static-img">
+    <p data-en="Get In Touch
+83 Mdlalose Street, Nquthu
+(034) 271 6100
+Info@Nquthu.gov.za
+Business Hours: Monday – Friday 7:30 AM – 16:00 PM, Saturday & Sunday - Closed, Public Holidays - Closed
+Emergency Contacts:
+SAPS : 10111
+Medical Services : 10177
+Fire Department : (034) 212 2222
+National Anti-Corruption Hotline: 0800 701 701
+KZN Wildlife : (033) 845 1999
+GBV Hotline : 0800 428 428"
+       data-zu="Xhumana Nathi
+83 Mdlalose Street, eNquthu
+(034) 271 6100
+Info@Nquthu.gov.za
+Izikhathi Zebhizinisi: uMsombuluko – uLwesihlanu 7:30 AM – 16:00 PM, uMgqibelo & uSonto - Kuvaliwe, Ezinsukwini Zomphakathi - Kuvaliwe
+Oxhumana Ngezimo Eziphuthumayo:
+SAPS : 10111
+Izinsiza Zokwelapha : 10177
+Umlilo: (034) 212 2222
+Ukwahlulelwa Kwezehlakalo Zenkohlakalo Kazwelonke: 0800 701 701
+IZilwane zaseKZN : (033) 845 1999
+GBV Hotline : 0800 428 428">
+    </p>
+  </div>
+
+  <!-- Local Businesses -->
+  <div class="subsection">
+    <h3 data-en="Community Businesses & Services" data-zu="Amabhizinisi Nezinsiza Zomphakathi"></h3>
+    <p data-en="Nondweni residents proudly run several service places that support the community. These include productive hardware stores, a training centre that offers skills and car solutions, milling services for maize into flour (impuphu), entertainment centres, and various supermarkets. These businesses play a vital role in the local economy and create opportunities for employment." 
+       data-zu="Abahlali baseNondweni baphatha amabhizinisi amaningi anikeza izinsiza emphakathini. Lokhu kuhlanganisa izitolo zamathuluzi ezisebenzayo, izikhungo zokuqeqesha ezinikeza amakhono nezixazululo zezimoto, izikhungo zokugaya ummbila ziwuguqule ube impuphu, izikhungo zokuzijabulisa kanye nezitolo ezinkulu ezahlukene. La mabhizinisi adlala indima enkulu emnothweni wendawo futhi adala amathuba omsebenzi.">
+    </p>
+  </div>
+</section>
+
+<style>
+.subsection {
+  margin: 30px 0;
+}
+.static-img {
+  display: block;
+  max-width: 600px;
+  margin: 15px auto;
+  border-radius: 8px;
+}
+.slideshow.small {
+  position: relative;
+  max-width: 600px;
+  height: 250px;
+  margin: 15px auto;
+  overflow: hidden;
+}
+.slideshow.small img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.slideshow.small img.active {
+  opacity: 1;
+}
+</style>
+
+<script>
+// Slideshow function for all small slideshows
+document.querySelectorAll('.slideshow.small').forEach(slideshow => {
+  const imgs = slideshow.querySelectorAll('img');
+  let idx = 0;
+  setInterval(() => {
+    imgs[idx].classList.remove('active');
+    idx = (idx + 1) % imgs.length;
+    imgs[idx].classList.add('active');
+  }, 3500);
+});
+
+// Language switcher
+function switchLanguage(lang) {
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.textContent = el.getAttribute(data-${lang});
+  });
+}
+
+// Set default language to English on page load
+window.addEventListener('DOMContentLoaded', () => {
+  switchLanguage('en');
+});
+</script>
+
+<!-- Section: Education -->
+
+<style>
+.school {
+  display: flex;
+  flex-direction: column;  /* stack image above text */
+  align-items: center;     /* center horizontally */
+  text-align: center;      /* center paragraph text */
+  margin-bottom: 2rem;
+}
+
+.school-logo {
+  width: 150px;           /* square width */
+  height: 150px;          /* square height */
+  object-fit: cover;      /* fill square without distortion */
+  border-radius: 10px;    /* optional: rounded corners */
+  margin-bottom: 1rem;    /* space below image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* subtle shadow for style */
+}
+</style>
+<section id="education">
+  <h2 data-en="Education" data-zu="Imfundo"></h2>
+
+  <!-- Primary / LP Schools -->
+  <div class="school-category">
+    <h3 data-en="Primary / LP Schools" data-zu="Izikole Zasekuqaleni / LP"></h3>
+
+    <!-- Nondweni Primary -->
+    <div class="school">
+      <img src="lp.jpeg" alt="Nondweni Primary Logo" class="school-logo">
+      <p data-en="Nondweni Primary School
+Address: 5 Five Section, Nondweni, Nqutu, 3135
+Phone: (+27)824044510
+Email: nondweniprimary@gmail.com
+2023 Principal: Mtshali"
+         data-zu="Isikole saseNondweni
+Ikheli: 5 Five Section, Nondweni, Nqutu, 3135
+Ucingo: (+27)824044510
+I-imeyili: nondweniprimary@gmail.com
+Umqondisi 2023: Mtshali">
+      </p>
+    </div>
+
+    <!-- Ithaka Primary -->
+    <div class="school">
+      <img src="thaka.jpeg" alt="Ithaka Primary Logo" class="school-logo">
+      <p data-en="Ithaka Primary School
+Address: 99915 H Nondweni T, Nondweni A, Nqutu, 3137
+Phone: (+27)716567253
+Email: ithakaprimary@gmail.com
+2023 Principal: Mbatha"
+         data-zu="Isikole saseIthaka
+Ikheli: 99915 H Nondweni T, Nondweni A, Nqutu, 3137
+Ucingo: (+27)716567253
+I-imeyili: ithakaprimary@gmail.com
+Umqondisi 2023: Mbatha">
+      </p>
+    </div>
+
+    <!-- Ekukhanyeni Primary -->
+    <div class="school">
+      <img src="khanyeni.jpeg" alt="Ekukhanyeni Primary Logo" class="school-logo">
+      <p data-en="Ekukhanyeni Primary School
+Address: 5 Five Section, Nondweni, Nquthu, 3135
+Phone: (+27)726006253
+Email: ekukhanyenilp@gmail.com
+2023 Principal: Mathenjwa"
+         data-zu="Isikole saseEkukhanyeni
+Ikheli: 5 Five Section, Nondweni, Nquthu, 3135
+Ucingo: (+27)726006253
+I-imeyili: ekukhanyenilp@gmail.com
+Umqondisi 2023: Mathenjwa">
+      </p>
+    </div>
+
+    <!-- Siyacathula Primary -->
+    <div class="school">
+      <img src="siyacathula.jpeg" alt="Siyacathula Primary Logo" class="school-logo">
+      <p data-en="Siyacathula Primary School
+Address: 15 Nondweni T, Nondweni, Nqutu, 3135
+Phone: (+27)835217000
+Email: siyacathula@jenny.co.za
+2023 Principal: Mthembu"
+         data-zu="Isikole saseSiyacathula
+Ikheli: 15 Nondweni T, Nondweni, Nqutu, 3135
+Ucingo: (+27)835217000
+I-imeyili: siyacathula@jenny.co.za
+Umqondisi 2023: Mthembu">
+      </p>
+    </div>
+
+    <!-- Mandlenyosi Primary -->
+    <div class="school">
+      <img src="mandlenyosi.jpeg" alt="Mandlenyosi Primary Logo" class="school-logo">
+      <p data-en="Mandlenyosi Primary School
+Address: Odudela Area, Nondweni, Nqutu, 3135
+Phone: (+27)793743870
+Email not updated
+2023 Principal: Mthethwa"
+         data-zu="Isikole saseMandlenyosi
+Ikheli: Odudela Area, Nondweni, Nqutu, 3135
+Ucingo: (+27)793743870
+I-imeyili alikashintshwa
+Umqondisi 2023: Mthethwa">
+      </p>
+    </div>
+  </div>
+
+  <!-- Secondary / High Schools -->
+  <div class="school-category">
+    <h3 data-en="Secondary / High Schools" data-zu="Izikole Eziphakeme / High"></h3>
+
+    <!-- Langazela Secondary -->
+    <div class="school">
+      <img src="langazela.jpeg" alt="Langazela Secondary Logo" class="school-logo">
+      <p data-en="Langazela Secondary School
+Address: 5 Five Section, Nondweni A, Nqutu, 3135
+Phone: (+27)834181393
+Email: langazela@jenny.co.za
+2023 Principal: Ndlovu"
+         data-zu="Isikole saseLangazela
+Ikheli: 5 Five Section, Nondweni A, Nqutu, 3135
+Ucingo: (+27)834181393
+I-imeyili: langazela@jenny.co.za
+Umqondisi 2023: Ndlovu">
+      </p>
+    </div>
+
+    <!-- Ndlelanhle Secondary -->
+    <div class="school">
+      <img src="ndlelanhle.jpeg" alt="Ndlelanhle Secondary Logo" class="school-logo">
+      <p data-en="Ndlelanhle Secondary School
+Address: Sizamile Tribal Authority, Ithala Reserve Nondweni, Nqutu, 3135
+Phone: (+27)342718719
+Email: ndlelanhlesec@gmail.com
+2023 Principal: Ntuli"
+         data-zu="Isikole saseNdlelanhle
+Ikheli: Sizamile Tribal Authority, Ithala Reserve Nondweni, Nqutu, 3135
+Ucingo: (+27)342718719
+I-imeyili: ndlelanhlesec@gmail.com
+Umqondisi 2023: Ntuli">
+      </p>
+    </div>
+
+    <!-- Mhayise Secondary -->
+    <div class="school">
+      <img src="mhayise.jpeg" alt="Mhayise Secondary Logo" class="school-logo">
+      <p data-en="Mhayise Secondary School
+Address not updated
+Phone: (+27)835454148
+Email not updated
+2023 Principal: Sibeko"
+         data-zu="Isikole saseMhayise
+Ikheli alikashintshwa
+Ucingo: (+27)835454148
+I-imeyili alikashintshwa
+Umqondisi 2023: Sibeko">
+      </p>
+    </div>
+  </div>
+
+
+</section>
+
+
+
+<!-- Section: Community & Economy -->
+<section id="community">
+  <h2 data-en="Community & Economy" data-zu="Umphakathi & Umnotho">Community & Economy</h2>
+
+  <!-- Agriculture slideshow -->
+  <div class="slideshow">
+    <img src="garden.jpeg" alt="Nondweni Agriculture 1" class="active">
+    <img src="goat.jpeg" alt="Nondweni Agriculture 2">
+    <img src="sheet.jpeg" alt="Nondweni Agriculture 3">
+    <img src="cows.jpeg" alt="Nondweni Agriculture 4">
+    
+  </div>
+
+  <p data-en="Agriculture, crafts, and community projects are major parts of Nondweni's local economy." 
+     data-zu="Ezolimo, imisebenzi yezandla, namaphrojekthi omphakathi kuyizinto ezinkulu zomnotho waseNondweni.">
+    Agriculture, crafts, and community projects are major parts of Nondweni's local economy.
+  </p>
+
+  <h3 data-en="Economy and Community Life" data-zu="Umnotho Nokuphila Komphakathi">Economy and Community Life</h3>
+  <ul>
+    <li data-en="Mixed livelihood strategies: Residents combine land-based activities with social grants and off-farm income for a diversified economic portfolio."
+        data-zu="Amasu ahlukene wokuphila: Abahlali bahlanganisa imisebenzi emhlabeni namagranti omphakathi kanye neminye imali ngaphandle kwezolimo ukuze bathole umnotho ohlukahlukene.">
+      Mixed livelihood strategies: Residents combine land-based activities with social grants and off-farm income for a diversified economic portfolio.
+    </li>
+    <li data-en="Migration for work: Due to limited local employment, many rely on migrant work in larger towns. Previously, recruitment was registered in Nqutu."
+        data-zu="Ukufuduka emsebenzini: Ngenxa yokushoda kwemisebenzi yasendaweni, abaningi bathembele emisebenzini yokufudukela emadolobheni amakhulu. Ngaphambili, ukufakwa kwabantu emsebenzini kwaqoshwa eNqutu.">
+      Migration for work: Due to limited local employment, many rely on migrant work in larger towns. Previously, recruitment was registered in Nqutu.
+    </li>
+    <li data-en="Informal sector: Small-scale trade and services like hairdressing or dressmaking provide crucial income."
+        data-zu="Umkhakha ongakahleleki: Ukuthengisa okuncane nezinsiza ezifana nokuhlobisa izinwele noma ukwakha izingubo kunikeza imali ebalulekile.">
+      Informal sector: Small-scale trade and services like hairdressing or dressmaking provide crucial income.
+    </li>
+  </ul>
+
+  <h3 data-en="Agriculture and Livestock" data-zu="Ezolimo Nezilwane">Agriculture and Livestock</h3>
+  <ul>
+    <li data-en="Cultivation: Home gardens and fields are essential for food security and income. Manure from livestock is often used as fertilizer."
+        data-zu="Ukulima: Amagceke emakhaya nezimboni kubalulekile ekuphepheni kokudla nakwimali engenayo. Udaka lwezilwane luhlale lusetshenziswa njengokufafaza.">
+      Cultivation: Home gardens and fields are essential for food security and income. Manure from livestock is often used as fertilizer.
+    </li>
+    <li data-en="Livestock: Ownership of cattle, goats, and chickens provides multiple benefits." 
+        data-zu="Izilwane: Ukuba nezinkomo, izimbuzi, nezinkukhu kunikeza izinzuzo eziningi.">
+      Livestock: Ownership of cattle, goats, and chickens provides multiple benefits.
+      <ul>
+        <li data-en="Cattle: Used for trade, bride-wealth, ploughing, milk, meat, and rituals."
+            data-zu="Izinkomo: Zisetshenziselwa ukuthengiselana, imali yomshado, ukusila amasimu, ubisi, inyama, nemikhosi.">
+          Cattle: Used for trade, bride-wealth, ploughing, milk, meat, and rituals.
+        </li>
+        <li data-en="Goats and chickens: Kept for slaughter, trade, and household consumption."
+            data-zu="Izimbuzi nezinkukhu: Zigcinwa ukuze zihlanzwe, zithengiswe, futhi zidliwe ekhaya.">
+          Goats and chickens: Kept for slaughter, trade, and household consumption.
+        </li>
+        <li data-en="Cultural significance: Livestock play a role in ancestral rituals."
+            data-zu="Ukuhlonishwa kwamasiko: Izilwane zibalulekile emikhosini yokuhlonipha okhokho.">
+          Cultural significance: Livestock play a role in ancestral rituals.
+        </li>
+      </ul>
+    </li>
+    <li data-en="Forestry: Residents plant timber plantations on old fields for supplementary income."
+        data-zu="Izihlahla: Abahlali batshala izihlahla zamaplanti ezindaweni ezindala ukuze bathole imali eyengeziwe.">
+      Forestry: Residents plant timber plantations on old fields for supplementary income.
+    </li>
+    <li data-en="Wild resources: Households gather firewood, construction poles, and medicinal plants."
+        data-zu="Izinsiza zasendle: Imindeni iqoqela izinkuni zomlilo, izinsika zokwakha, nezitshalo zemithi.">
+      Wild resources: Households gather firewood, construction poles, and medicinal plants.
+    </li>
+  </ul>
+
+  <h3 data-en="Local Government Support" data-zu="Ukusekelwa Kukahulumeni Wendawo">Local Government Support</h3>
+  <p data-en="The Nquthu municipality, within Umzinyathi District, supports agriculture through provincial initiatives addressing farming tools, stock theft, and infrastructure." 
+     data-zu="Umasipala waseNquthu, ongaphansi kweSigaba se-Umzinyathi, usekela ezolimo ngohlelo lukahulumeni oluqondene namathuluzi okuphila, ukweba izilwane, nezinsiza zomphakathi.">
+    The Nquthu municipality, within Umzinyathi District, supports agriculture through provincial initiatives addressing farming tools, stock theft, and infrastructure.
+  </p>
+</section>
+
+<style>
+.slideshow {
+  position: relative;
+  max-width: 600px;
+  height: 350px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+.slideshow img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.slideshow img.active {
+  opacity: 1;
+}
+</style>
+
+<script>
+// 5-photo agriculture slideshow
+const agriSlides = document.querySelectorAll('#community .slideshow img');
+let agriIndex = 0;
+setInterval(() => {
+  agriSlides[agriIndex].classList.remove('active');
+  agriIndex = (agriIndex + 1) % agriSlides.length;
+  agriSlides[agriIndex].classList.add('active');
+}, 4000);
+</script>
+
+<!-- Section: History & Culture -->
+<section id="history">
+  <h2 data-en="History & Culture" data-zu="Umlando & Isiko">History & Culture</h2>
+
+  <p data-en="Nondweni has a rich history, including the establishment of Tin Town and local cultural practices." 
+     data-zu="INondweni inembali ocebile kuhlanganise nokusungulwa kweTin Town kanye nemikhuba yamasiko endawo.">
+    Nondweni has a rich history, including the establishment of Tin Town and local cultural practices.
+  </p>
+
+  <!-- Establishment of the settlement -->
+  <h3 data-en="Establishment of the Settlement" data-zu="Ukusungulwa Kwesikhungo">Establishment of the Settlement</h3>
+  <ul>
+    <li data-en="Land Consolidation: Following the 1913 and 1936 Land Acts, the apartheid government consolidated land to create larger, ethnically segregated territories. Nondweni area, near Nqutu, was acquired by the South African Native Trust in 1964."
+        data-zu="Ukuhlanganiswa Komhlaba: Ngemva kwemithetho yomhlaba ka-1913 no-1936, uhulumeni wobandlululo wahlanganisa izindawo zomhlaba ukudala izindawo ezinkulu ezihlukaniswe ngokobuhlanga. Indawo yaseNondweni, eduze kwendawo yaseNqutu, yathathwa yiSouth African Native Trust ngo-1964.">
+      Land Consolidation: Following the 1913 and 1936 Land Acts, the apartheid government consolidated land to create larger, ethnically segregated territories. Nondweni area, near Nqutu, was acquired by the South African Native Trust in 1964.
+    </li>
+    <li data-en="Removal of White Farmers: White farmers were bought out and their village destroyed." 
+        data-zu="Ukususwa Kwabalimi Abamhlophe: Abalimi abamhlophe bathengiswa nguhulumeni kwathi umuzi wabo wabhujiswa.">
+      Removal of White Farmers: White farmers were bought out and their village destroyed.
+    </li>
+    <li data-en="Arrival of Displaced People: Black farm laborers and their families began moving to the area after 1972. In 1976, the government formalized the resettlement as 'Tin Town'." 
+        data-zu="Ukufika Kwabantu Abadutshulwe: Abaqashi bemapulazi abamnyama nemindeni yabo baqala ukunyakaza kule ndawo ngemuva kuka-1972. Ngo-1976, uhulumeni waba semthethweni ngokusungula indawo yokuhlala ethi 'Tin Town'.">
+      Arrival of Displaced People: Black farm laborers and their families began moving to the area after 1972. In 1976, the government formalized the resettlement as 'Tin Town'.
+    </li>
+  </ul>
+
+  <!-- Lives of residents -->
+  <h3 data-en="Lives of Residents" data-zu="Izimpilo Zomphakathi">Lives of Residents</h3>
+  <ul>
+    <li data-en="Deplorable Conditions: Families lived in small prefabricated tin huts, overcrowded and poorly resourced." 
+        data-zu="Izimo Ezingezinhle: Imindeni yahlala ezakhiweni ezincane zophahla lwethini, kugcwele kakhulu futhi kunezinsiza ezincane.">
+      Deplorable Conditions: Families lived in small prefabricated tin huts, overcrowded and poorly resourced.
+    </li>
+    <li data-en="Impact of Dispossession: Many families lost livestock and livelihoods; Heslerton community resisted moving fearing loss of cattle." 
+        data-zu="Umthelela Wokususwa: Imindeni eminingi yalahlekelwa izinkomo nezindlela zokuphila; umphakathi waseHeslerton wawumelana nokunyakaza ngenxa yokwesaba ukulahlekelwa izinkomo.">
+      Impact of Dispossession: Many families lost livestock and livelihoods; Heslerton community resisted moving fearing loss of cattle.
+    </li>
+    <li data-en="Integration with KwaZulu: Nondweni was eventually transferred under KwaZulu homeland government administration." 
+        data-zu="Ukuhlanganiswa NeKwaZulu: INondweni yagcinwa ngaphansi kokuphathwa kukahulumeni weKwaZulu.">
+      Integration with KwaZulu: Nondweni was eventually transferred under KwaZulu homeland government administration.
+    </li>
+  </ul>
+
+  <!-- Forced removals pattern -->
+  <h3 data-en="Pattern of Forced Removals" data-zu="Uhlelo Lokususwa Ngokuphoqelela">Pattern of Forced Removals</h3>
+  <p data-en="Nondweni's creation was part of a systematic forced resettlement program, with other similar settlements including Mondlo, Compensation, Qedeni, Limehill, and Hlobani." 
+     data-zu="Ukusungulwa kweNondweni kwakuyingxenye yohlelo oluhlelwe ngokucophelela lokususwa kwabantu ngokuphoqelela, nezinye izindawo ezifana neMondlo, Compensation, Qedeni, Limehill, noHlobani.">
+    Nondweni's creation was part of a systematic forced resettlement program, with other similar settlements including Mondlo, Compensation, Qedeni, Limehill, and Hlobani.
+  </p>
+</section>
+
+<!-- Section: Map -->
+<section id="map">
+  <h2 data-en="Come visit us" data-zu="woza uzovakasha">come visit us</h2>
+  <div class="map">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301.123456789!2d30.80476!3d-28.19908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef1cbc13818d33b%3A0x91c768c8bc93a0d9!2sNondweni%2C%20Nqutu%2C%20KwaZulu-Natal%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1692780000000!5m2!1sen!2sza" 
+      width="100%" 
+      height="450" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<style>
+#map .map {
+  width: 90%;          /* shrink width a bit so it doesn’t touch edges */
+  max-width: 800px;    /* still limit it on big screens */
+  height: 450px;
+  margin: 20px auto;   /* centers horizontally */
+  border-radius: 10px; /* optional: rounded corners */
+  overflow: hidden;    /* keep iframe within rounded edges */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* optional shadow */
+}
+
+#map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+</style>
+
+<!-- Footer -->
+<footer style="background:#111; color:#fff; text-align:center; padding:20px; font-family:Arial, sans-serif;">
+  <p>All rights reserved | Powered by <strong>Austine03</strong></p>
+  <a href="http://linkedin.com/in/nkanyiso-hlatshwayo-842401355" target="_blank" style="display:inline-block; margin-top:10px;">
+    <img src="in.jpeg" alt="LinkedIn Profile" 
+         style="width:40px; height:40px; border-radius:50%; border:2px solid #fff; transition: transform 0.3s;">
+  </a>
+  <p style="margin-top:10px;">&copy; 2025 Discover Nondweni</p>
+</footer>
+
+<style>
+  footer a img:hover {
+    transform: scale(1.2);
+  }
+</style>
+
+<!-- Scripts -->
+<script>
+  // Language Switcher
+  const langToggle = document.getElementById('langToggle');
+  let currentLang = 'en';
+  langToggle.addEventListener('click', ()=>{
+    const elems = document.querySelectorAll('[data-en]');
+    if(currentLang==='en'){
+      elems.forEach(el=>el.textContent = el.getAttribute('data-zu'));
+      langToggle.textContent='English';
+      currentLang='zu';
+    } else {
+      elems.forEach(el=>el.textContent = el.getAttribute('data-en'));
+      langToggle.textContent='Zulu';
+      currentLang='en';
+    }
+  });
+
+
+  // Dark Mode Toggle
+  const darkToggle = document.getElementById('darkToggle');
+  darkToggle.addEventListener('click', ()=>{
+    document.body.classList.toggle('dark');
+    darkToggle.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
+  });
+
+  // Live Weather
+  const weatherEl = document.getElementById('currentWeather');
+  const weatherApiKey = 'YOUR_OPENWEATHER_API_KEY'; // Replace with your key
+  fetch(https://api.openweathermap.org/data/2.5/weather?q=Nondweni,ZA&units=metric&appid=${weatherApiKey})
+    .then(res=>res.json())
+    .then(data=>{
+      weatherEl.innerHTML = Temperature: ${data.main.temp}°C | Weather: ${data.weather[0].description};
+    })
+    .catch(err=>weatherEl.innerHTML='Weather unavailable');
+
+  // Distance & Travel Time
+  const distanceEl = document.getElementById('distance');
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(position=>{
+      const lat1 = position.coords.latitude;
+      const lon1 = position.coords.longitude;
+      const lat2 = -28.1922;
+      const lon2 = 30.8194;
+      const R = 6371;
+      const dLat = (lat2-lat1) * Math.PI/180;
+      const dLon = (lon2-lon1) * Math.PI/180;
+      const a = Math.sin(dLat/2)*2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)*2;
+      const c = 2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      const distance = R*c;
+      const travelTime = (distance/60).toFixed(1); // avg 60km/h
+      distanceEl.innerHTML = Approx. distance to Nondweni: ${distance.toFixed(1)} km | Estimated travel time: ${travelTime} hours;
+    }, ()=>distanceEl.innerHTML='Unable to get your location');
+  } else { distanceEl.innerHTML='Geolocation not supported'; }
+</script>
+
+</body>
+</html>
